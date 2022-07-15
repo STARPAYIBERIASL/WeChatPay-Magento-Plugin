@@ -1,0 +1,22 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\OfflinePayments\Model\Checkmo">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="classyllama_llamacoin" xsi:type="const">ClassyLlama\LlamaCoin\Model\LlamaCoin::CODE</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="ClassyLlama\LlamaCoin\Logger\Handler\Log">
+    <arguments>
+        <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+    </arguments>
+    </type>
+    <type name="ClassyLlama\LlamaCoin\Logger\Log">
+        <arguments>
+            <argument name="name" xsi:type="string">WechatPayLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">ClassyLlama\LlamaCoin\Logger\Handler\Log</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

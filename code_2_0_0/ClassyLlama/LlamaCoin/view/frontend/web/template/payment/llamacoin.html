@@ -1,0 +1,47 @@
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+        <label data-bind="attr: {'for': getQrcode()}" class="label">
+            <span>微信支付</span>
+        </label>
+    </div>
+    <div class="payment-method-content">
+
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <div data-role="checkout-messages" id="error_content" class="messages" style="visibility: hidden;">
+            <div role="alert" class="message message-error error">
+                <div >Something happened, check the Wechat Pay's module settings</div>
+            </div>
+        </div>
+
+        <img id="qr_code" src="" alt="" style="visibility: hidden;">
+
+        <div class="actions-toolbar">
+            <form id="frmain" method="post" action="https://api.starpayes.com/aps-gateway/gateway.do">
+    			<p>
+    				<input type="hidden" id="access_id" name="access_id" value="" />
+    				<input type="hidden" id="type" name="type" value="" />
+    				<input type="hidden" id="version" name="version" value="" />
+    				<input type="hidden" id="timestamp" name="timestamp" value="" />
+    				<input type="hidden" id="content" name="content" value="" />
+    				<input type="hidden" id="format" name="format" value="" />
+    				<input type="hidden" id="sign" name="sign" value="" />
+    			</p>
+                <div class="primary" id="pay_button" style="visibility: hidden;">
+                    <button class="action primary checkout" type="submit" title="Pay Order" value="Pay Order" style="line-height: 2.2rem; padding: 14px 17px; font-size: 1.8rem;">
+                        <span>Pay Order</span>
+                    </button>
+                </div>
+    		</form>
+
+        </div>
+    </div>
+</div>
